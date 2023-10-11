@@ -1,0 +1,399 @@
+body {
+  /*background-color: #f5f8f9;*/
+  background-color: #f2f5f9;
+  margin: 0;
+  padding: 0;
+  /*display: flex;*/
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden; /* 화면 넘침 방지 */
+}
+
+/* 메뉴바 */
+.head {
+  /*background-color: yellow;*/
+  width: 100%;
+  height: 70px;
+  font-size: 30px;
+  font-weight: 800;
+  padding: 10px 0px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  /*border-bottom: 1px solid #243832;*/
+  border: none;
+  border-bottom: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.head-box {
+  width: 100%;
+  padding: 10px 30px;
+  display: flex;
+
+  /*align-items: center;*/
+}
+
+.head-box > i {
+  /*color: #243832;*/
+  color: red;
+}
+
+.head-title {
+  margin-left: 10px;
+  color: #243832;
+}
+
+.header-hr {
+  margin-top: 40px;
+}
+/* 메뉴바 끝 */
+
+.selectbox {
+  background-color: transparent;
+  padding: 10px;
+  width: 20px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  margin-right: 40px;
+}
+
+.selectbox:focus {
+  /*outline: 2px solid gray;*/
+  outline: none;
+}
+
+.body-container {
+  display: flex;
+  /*height: 100%;*/
+}
+.side-container {
+  width: 30%;
+  height: 100%;
+  /*background-color: yellow;*/
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: 40px;
+}
+
+.side-box {
+  background-color: white;
+  width: 300px;
+  height: 280px;
+  border-radius: 20px;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.07),
+    0 4px 8px rgba(0, 0, 0, 0.07), 0 8px 16px rgba(0, 0, 0, 0.07),
+    0 16px 32px rgba(0, 0, 0, 0.07), 0 32px 64px rgba(0, 0, 0, 0.07);
+}
+
+.side-text {
+  color: #767f8c;
+}
+
+.side-text > i {
+  margin-right: 10px;
+}
+
+.side-input {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(51, 51, 183, 0.828);
+}
+
+.main {
+  /*position: absolute;*/
+  /*bottom: 0;*/
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  border-top-left-radius: 20px;
+  margin-top: 40px;
+  border: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.07),
+    0 4px 8px rgba(0, 0, 0, 0.07), 0 8px 16px rgba(0, 0, 0, 0.07),
+    0 16px 32px rgba(0, 0, 0, 0.07), 0 32px 64px rgba(0, 0, 0, 0.07);
+}
+
+.main-container {
+  /*background-color: blue;*/
+  height: 85vh;
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat {
+  /*background-color: teal;*/
+  height: inherit;
+  z-index: 1;
+}
+
+.reply {
+  /*background-color: black;*/
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  width: inherit;
+  z-index: 2;
+}
+
+.reply input {
+  padding: 5px 10px;
+  border-radius: 15px;
+  border: 1px solid gray;
+  width: inherit;
+}
+
+.reply input::placeholder {
+  font-size: 11px;
+}
+
+.reply button {
+  background-color: #635cc3;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+}
+
+.reply button > i {
+  color: white;
+}
+
+/* showMessage */
+.main-container .blank {
+  clear: both;
+  height: 4px;
+}
+
+.main-container .chat {
+  /*height: calc(100% - 72px);*/
+  overflow-y: scroll;
+  font-size: 12px;
+}
+
+.main-container .chat::-webkit-scrollbar {
+  display: none;
+}
+
+.main-container .chat .mytalk {
+  float: right;
+  width: 100%;
+}
+
+.main-container .chat .mytalk .a {
+  float: right;
+  position: relative;
+  min-height: 24px;
+  max-width: calc(100% - 64px);
+  left: 2px;
+  /*background-color: #ffec42;*/
+  background-color: #e3e7ee;
+  border-radius: 12px;
+  border-top-right-radius: 0px;
+  z-index: 2;
+  padding: 0px 4px 0px 4px;
+  word-break: break-all;
+  padding: 10px;
+}
+
+.main-container .chat .mytalk .b {
+  float: right;
+  position: relative;
+  width: 8px;
+  height: 22px;
+  /*background: url(./chat_balloon_yellow.right.png) no-repeat;*/
+  z-index: 1;
+}
+
+.main-container .chat .othertalk {
+  float: left;
+  width: 100%;
+  color: white;
+}
+
+.main-container .chat .othertalk .box {
+  float: left;
+  /*width: calc(100% - 48px);*/
+}
+
+.main-container .chat .othertalk .box .profile_name {
+  font-size: 12px;
+}
+
+.main-container .chat .othertalk .box .a {
+  float: left;
+  position: relative;
+  width: 8px;
+  height: 22px;
+  /*background: url(./chat_balloon_white.left.png) no-repeat;*/
+  z-index: 1;
+}
+
+.main-container .chat .othertalk .box .b {
+  float: left;
+  position: relative;
+  min-height: 24px;
+  max-width: calc(100% - 64px);
+  left: -2px;
+  /*background-color: #ffffff;*/
+  background-color: #645cca;
+  border-radius: 12px;
+  border-top-left-radius: 0px;
+  z-index: 2;
+  /*padding: 0px 4px 0px 4px;*/
+  padding: 10px;
+  word-break: break-all;
+}
+
+/* 수정 */
+.mytalk {
+  margin-top: 20px;
+}
+.othertalk {
+  margin: 20px 0px;
+}
+/**/
+
+.b img {
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.theme-box {
+  font-size: 15px;
+  padding: 5px;
+}
+
+.btn-container {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+
+.summarization-btn,
+.articleUrl-btn {
+  border: none;
+  padding: 5px;
+  font-size: 10px;
+  margin-bottom: 5px;
+}
+
+.reply-text {
+  float: left;
+  width: calc(100% - 68px);
+  height: 64px;
+  border-radius: 8px 0px 0px 8px;
+  margin: 0px 0px 0px 0px;
+  padding: 2px 2px 2px 2px;
+  resize: none;
+}
+
+.reply-text .sendmsg .button {
+  float: right;
+  width: 62px;
+  height: 68px;
+  background-color: #ffec42;
+  border-radius: 0px 8px 8px 0px;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  text-align: center;
+  display: table;
+  cursor: pointer;
+}
+
+.reply-text .sendmsg .button p {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+/*로딩 화면*/
+.loading-layer {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(68, 68, 68, 0.3);
+  z-index: 11111;
+}
+.loading-layer .loading-wrap {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+.loading-layer .loading-wrap .loading-text {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  color: #fff;
+  text-shadow: 2px 3px 2.6px #a2a2a2;
+  font-size: 3.8em;
+  position: relative;
+  top: -20px;
+}
+.loading-layer.active-loading .loading-wrap .loading-text span:nth-child(1) {
+  animation: loading-01 0.82s infinite;
+}
+.loading-layer.active-loading .loading-wrap .loading-text span:nth-child(2) {
+  animation: loading-02 0.82s infinite;
+}
+.loading-layer.active-loading .loading-wrap .loading-text span:nth-child(3) {
+  animation: loading-03 0.82s infinite;
+}
+
+@keyframes loading-01 {
+  25% {
+    /*color: #000;*/
+    color: red;
+  }
+  50% {
+    color: #fff;
+  }
+}
+@keyframes loading-02 {
+  50% {
+    /*color: #000;*/
+    color: red;
+  }
+  75% {
+    color: #fff;
+  }
+}
+@keyframes loading-03 {
+  75% {
+    /*color: #000;*/
+    color: red;
+  }
+  100% {
+    color: #fff;
+  }
+}
+/*로딩 화면 끝*/
+
+/* 요약 채팅 애니메이션 */
+.othertalk {
+  position: relative;
+  animation: slide-in 0.5s ease-in-out;
+}
+
+@keyframes slide-in {
+  from {
+    left: -100%;
+  }
+  to {
+    left: 0;
+  }
+}
+/* 요약 채팅 애니메이션 끝*/

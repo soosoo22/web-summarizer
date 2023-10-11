@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="../static/css/home.css" />
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Article</title>
+
+    <!--
+    <script>
+      //메뉴바 클릭 시 섹션 별 이동
+      function scrollToSection2() {
+        const section2 = document.getElementById("section2");
+        section2.scrollIntoView({ behavior: "smooth" });
+
+        //1초 텀주고 생성요약박스 확대 추출요약박스 축소
+        setTimeout(function () {
+          var section2Box = document.querySelector(
+            ".section2-total:first-child"
+          );
+          var section2Box2 = document.querySelector(
+            ".section2-total:nth-child(2)"
+          );
+          section2Box.classList.add("zoomed");
+          section2Box2.classList.add("zoomed");
+        }, 1200);
+      }
+
+      function scrollToSection3() {
+        const section2 = document.getElementById("section3");
+        section2.scrollIntoView({ behavior: "smooth" });
+
+        //1초 텀주고 확대
+        setTimeout(function () {
+          var section3Box = document.querySelector(".section3-contianer-box");
+
+          section3Box.classList.add("zoomed");
+        }, 1200);
+      }
+
+      function changeValue() {
+        console.log("heelldldldl");
+        var choice = document.getElementById("select");
+        var mychoice = choice.options[choice.selectedIndex].value;
+        //var mychoice = choice.value;
+
+        if (mychoice === "본문") {
+          //window.location.href = "/";
+        } else if (choice === "뉴스") {
+          //window.location.href = "article.html";
+        }
+      }
+
+      window.onload = function () {
+        //chat.html 에서 우측 버튼 클릭 시 스크롤링
+        var params = new URLSearchParams(window.location.search);
+        var value = params.get("value");
+        if (value === "2") {
+          scrollToSection2();
+        } else if (value === "3") {
+          scrollToSection3();
+        }
+
+        var select = document.getElementById("select");
+        select.addEventListener("change", function () {
+          changeValue();
+        });
+      };
+
+      //스크롤 내려서 영역 도달하면 Procedure 부분 확대
+      window.addEventListener("scroll", function () {
+        var section3 = document.getElementById("section3-contianer-box");
+        var scrollPosition = window.scrollY || window.pageYOffset;
+        var sectionOffsetTop = section3.offsetTop;
+        var windowHeight = window.innerHeight;
+
+        if (scrollPosition > sectionOffsetTop - windowHeight) {
+          //1초 텀주고 확대
+          setTimeout(function () {
+            section3.classList.add("zoomed");
+          }, 1000);
+        } else {
+          section3.classList.remove("zoomed");
+        }
+      });
+    </script>
+     -->
+  </head>
+  <body>
+    <div class="head">
+      <div class="head-box">
+        <i class="fas fa-user-astronaut"></i>
+        <div class="head-title" onclick="window.location.href='/'">
+          Summarizer
+        </div>
+        <div class="head-subtitle" onclick="scrollToSection2()">
+          abstractive
+        </div>
+        <div class="head-subtitle" onclick="scrollToSection3()">model</div>
+        <div class="head-subtitle" onclick="window.location.href='/chat'">
+          summary
+        </div>
+        <div class="head-subtitle" onclick="window.location.href='/article'">
+          article
+        </div>
+      </div>
+      <div>
+        <select id="select" class="selectbox" onchange="changeValue()">
+          <option value="본문" class="lang-option">본문</option>
+          <!-- <option value="URL" class="lang-option">URL</option>
+        <option value="문서" class="lang-option">문서</option> -->
+          <option value="뉴스" class="lang-option" selected>뉴스</option>
+        </select>
+      </div>
+    </div>
+
+    <main>
+      <div class="main">
+        <div class="container1">
+          <div class="title-box">
+            <div class="title">Korean abstractive summary service</div>
+            <div class="subtitle">
+              Building a generative summary model using natural language
+              processing technology
+            </div>
+            <div class="text">
+              This project provides a text summary function using natural
+              language processing technology. When the user passes the input
+              text to the system, the text summary result is returned using the
+              learned generative summary model.
+            </div>
+            <div class="summary-btn">
+              <button onclick="window.location.href='/chat'">
+                summary now <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="container2">
+          <div></div>
+          <div class="box">
+            <div class="img-box">
+              <img
+                src="{{ url_for('static', filename='img/summary-img.png') }}"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <section id="section2">
+      <div class="section2-container">
+        <div class="section2-title">Text summarization</div>
+
+        <div class="section2-mid">
+          <div class="section2-total">
+            <div class="section2-box">
+              <div class="section2-box-title">Abstractive</div>
+              <div class="section2-box-content1">
+                <div class="section2-box-input">Input</div>
+                <div class="section2-box-text">
+                  연구 결과에 따르면 일상적인 운동은 우리의 신체적인 건강을
+                  유지하고 개선하는 데 매우 중요한 역할을 합니다. 또한, 정신적인
+                  면에서도 운동은 스트레스 감소와 기분 개선에 도움을 줄 수
+                  있습니다.
+                </div>
+              </div>
+              <div class="section2-box-content2">
+                <div class="section2-box-output">Output</div>
+                <div class="section2-box-text">
+                  · 일상적인 운동은 신체적, 정신적 건강에 긍정적인 영향을
+                  줍니다.
+                </div>
+              </div>
+            </div>
+            <div class="section2-abstractive">
+              <b>생성요약이란,</b> 대상 문서의 의미를 해석하여 지능적으로
+              요약문을 만드는 방법으로, 완전히 새로운 문장을 생성한다.
+            </div>
+          </div>
+          <div class="section2-total">
+            <div class="section2-box section2-box2">
+              <div class="section2-box-title">Extractive</div>
+              <div class="section2-box-content1">
+                <div class="section2-box-input">Input</div>
+                <div class="section2-box-text">
+                  연구 결과에 따르면 일상적인 운동은 우리의 신체적인 건강을
+                  유지하고 개선하는 데 매우 중요한 역할을 합니다. 또한, 정신적인
+                  면에서도 운동은 스트레스 감소와 기분 개선에 도움을 줄 수
+                  있습니다.
+                </div>
+              </div>
+              <div class="section2-box-content2">
+                <div class="section2-box-output">Output</div>
+                <div class="section2-box-text">
+                  · 운동은 신체와 정신 건강에 도움이 됩니다.
+                </div>
+              </div>
+            </div>
+            <div class="section2-abstractive">
+              <b>추출요약이란,</b> 대상 문서에서 중요한 문장을 식별하여 요약문을
+              만드는 방법으로, 원본에서의 정확한 문장을 포함하는 요약이다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="section3">
+      <div class="section3-contianer">
+        <div class="section3-contianer-box" id="section3-contianer-box">
+          <div
+            style="
+              position: absolute;
+              top: 0;
+              left: 100px;
+              font-size: 40px;
+              font-weight: 800;
+              box-shadow: inset 0 -20px 0 #a7bfd6;
+            "
+          >
+            Procedure
+          </div>
+          <div class="section3-box">
+            <div class="section3-textbox">
+              <div class="section3-title">
+                Data collection and preprocessing
+              </div>
+              <div class="section3-content">
+                · 다양한 주제와 장르의 문서 및 문장 데이터를 수집하고 전처리하여
+                정제된 학습 데이터를 구성<br /><br />
+                ·SentencePiece tokenizer를 사용하여 토큰화를 수행
+              </div>
+              <img
+                src="{{ url_for('static', filename='img/arrow-up.png') }}"
+                class="section3-img1"
+              />
+            </div>
+
+            <div class="section3-textbox">
+              <div class="section3-title">model design</div>
+              <div class="section3-content">
+                · 인코더-디코더 구조를 활용한 요약 모델을 구현<br /><br />
+                · T5 모델을 사용하여 인코더에서 문맥 정보를 추출하고 디코더에서
+                요약 문장을 생성<br /><br />
+                · 어텐션 메커니즘을 사용하여 인코더의 출력에 집중
+              </div>
+              <img
+                src="{{ url_for('static', filename='img/arrow-up-2.png') }}"
+                class="section3-img2"
+              />
+            </div>
+            <div class="section3-textbox">
+              <div class="section3-title">test</div>
+              <div class="section3-content">
+                · 개발된 요약 모델에 대해 테스트를 수행<br /><br />
+                · ROUGE SCORE를 사용하여 요약 결과를 평가
+              </div>
+              <img
+                src="{{ url_for('static', filename='img/arrow-up-2.png') }}"
+                class="section3-img3"
+              />
+            </div>
+            <div class="section3-textbox">
+              <div class="section3-title">learning and assessment</div>
+              <div class="section3-content">
+                · 수집한 학습 데이터를 사용하여 모델을 학습<br /><br />
+                · 전이학습을 이용하여 사전에 학습된 모델을 활용<br /><br />
+                ·ROUGE SCORE를 사용하여 모델의 성능을 평가
+              </div>
+            </div>
+            <div class="section3-textbox">
+              <div class="section3-title">wep page</div>
+              <div class="section3-content">
+                · 웹페이지를 구현하여 사용자가 텍스트를 입력하고 요약 결과를
+                확인<br />
+              </div>
+              <img
+                src="{{ url_for('static', filename='img/curve-arrow.png') }}"
+                class="section3-img4"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script type="text/javascript" src="../static/js/main.js"></script>
+
+    <script
+      src="https://kit.fontawesome.com/1dcf822923.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="../static/css/article.css" />
+    <script type="text/javascript" src="../static/js/article.js"></script>
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="upgrade-insecure-requests"
+    />
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Article</title>
+
+    <!--
+    <script>
+      function changeValue() {
+        console.log("heelldldldl");
+        var choice = document.getElementById("select");
+        var mychoice = choice.options[choice.selectedIndex].value;
+        //var mychoice = choice.value;
+
+        if (mychoice === "본문") {
+          window.location.href = "/";
+        } else if (choice === "뉴스") {
+          //window.location.href = "article.html";
+        }
+      }
+
+      function load() {
+        var addHtml = "";
+        var list = document.getElementById("list");
+        var title = document.createElement("a");
+
+        list.appendChild(title);
+      }
+
+      window.onload = function () {
+
+        var select = document.getElementById("select");
+        select.addEventListener("change", function() {
+          changeValue();
+        });
+
+        function onClick() {
+          document.querySelector(".popup-container").style.display = "block";
+          document.querySelector(".shadow").style.display = "block";
+          $(".shadow").show(); // 배경 어둡게
+        }
+        function offClick() {
+          document.querySelector(".popup-container").style.display = "none";
+          document.querySelector(".shadow").style.display = "none";
+          $(".shadow").hide(); // 배경 어둡게 삭제
+        }
+
+        document
+          .getElementById("summaryButton")
+          .addEventListener("click", onClick);
+        document
+          .querySelector(".close-button")
+          .addEventListener("click", offClick);
+      };
+
+
+
+      function loadPage(url) {
+        var titleArr2 = {{ titleArr2 | tojson }};
+        var summary = {{ summary | tojson }};
+
+        var iframe = document.getElementById("iframePage");
+        var popupTitle = document.getElementById("popupTitle");
+        var summResult = document.getElementById("summResult");
+
+
+        iframe.src = url;
+
+        //팝업창 기사 제목 추가
+        var a = event.currentTarget;
+        var dataIndex = a.getAttribute("data-index");
+        //alert(dataIndex);
+        popupTitle.innerText = titleArr2[dataIndex];
+        summResult.innerText = summary[dataIndex];
+      }
+
+      /*function botClick(newsSumm2){
+            alert(newsSumm2);
+        }*/
+
+        //iframe 클릭 시 width 변경
+        function iframeChangeWidth(){
+          var page1 = document.querySelector('.page1');
+          var page2 = document.querySelector('.page2');
+
+          page1.style.width = '30%';
+          page2.style.width = '70%';
+        }
+
+        //page1 클릭 시 width 변경
+        function divChangeWidth(){
+          var page1 = document.querySelector('.page1');
+          var page2 = document.querySelector('.page2');
+
+          page1.style.width = '50%';
+          page2.style.width = '50%';
+        }
+    </script>
+    -->
+    <script>
+      function loadPage(url) {
+        var titleArr2 = {{ titleArr2 | tojson }};
+        var summary = {{ summary | tojson }};
+
+        var iframe = document.getElementById("iframePage");
+        var popupTitle = document.getElementById("popupTitle");
+        var summResult = document.getElementById("summResult");
+
+
+        iframe.src = url;
+
+        //팝업창 기사 제목 추가
+        var a = event.currentTarget;
+        var dataIndex = a.getAttribute("data-index");
+        //alert(dataIndex);
+        popupTitle.innerText = titleArr2[dataIndex];
+        summResult.innerText = summary[dataIndex];
+      }
+
+      /*function botClick(newsSumm2){
+            alert(newsSumm2);
+        }*/
+
+        //iframe 클릭 시 width 변경
+        function iframeChangeWidth(){
+          var page1 = document.querySelector('.page1');
+          var page2 = document.querySelector('.page2');
+
+          page1.style.width = '30%';
+          page2.style.width = '70%';
+        }
+
+        //page1 클릭 시 width 변경
+        function divChangeWidth(){
+          var page1 = document.querySelector('.page1');
+          var page2 = document.querySelector('.page2');
+
+          page1.style.width = '50%';
+          page2.style.width = '50%';
+        }
+    </script>
+  </head>
+  <body>
+    <div class="head">
+      <div class="head-box" onclick="window.location.href='/'">
+        <i class="fas fa-user-astronaut"></i>
+        <div class="head-title">Summarizer</div>
+      </div>
+      <div>
+        <select id="select" class="selectbox" onchange="changeValue()">
+          <option value="본문" class="lang-option">본문</option>
+          <!-- <option value="URL" class="lang-option">URL</option>
+        <option value="문서" class="lang-option">문서</option> -->
+          <option value="뉴스" class="lang-option" selected>뉴스</option>
+        </select>
+      </div>
+    </div>
+    <div class="container">
+      <div id="list" class="page1" onclick="divChangeWidth()">
+        {% for index in range(titleArr2|length) %}
+        <a
+          href="{{urlArr2[index]}}"
+          id="click-box"
+          onclick="loadPage('{{ urlArr2[index] }}'); return false;"
+          data-index="{{ index }}"
+        >
+          <div class="list-column">
+            <div class="list-img">
+              <img src="{{imgArr2[index]}}" />
+            </div>
+            <div class="text-box">
+              <div class="list-title">{{titleArr2[index]}}</div>
+              <div class="list-content">{{contentArr2[index]}}</div>
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+      <div id="newpage" class="page2" onclick="iframeChangeWidth()">
+        <iframe id="iframePage" src="http://www.mediatoday.co.kr/"></iframe>
+      </div>
+    </div>
+
+    <button id="summaryButton" class="summary-bot">
+      <i class="fas fa-user-astronaut"></i>
+    </button>
+
+    <!-- 팝업창 -->
+    <div id="popupContainer" class="popup-container" style="display: none">
+      <div id="popupContent" class="popup-content">
+        <div class="popupFirst">
+          <div class="popupName">한 줄 요약</div>
+          <button id="closeButton" class="close-button">
+            <!-- <i class="fas fa-times"></i> -->
+            X
+          </button>
+        </div>
+        <hr />
+        <div id="popupTitle" class="popupTitle"></div>
+        <div id="summResult" class="summResult"></div>
+      </div>
+    </div>
+    <!-- 팝업창 끝 -->
+
+    <!-- 팝업창 띄워지면 주위 어두워지게 -->
+    <div class="shadow"></div>
+
+    <script type="text/javascript" src="../static/js/article.js"></script>
+    <script
+      src="https://kit.fontawesome.com/1dcf822923.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
